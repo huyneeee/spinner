@@ -462,7 +462,7 @@ h3 {
 }
 .mc-close::after,
 .mc-close::before {
-  content: '';
+  content: "";
   display: block;
   box-sizing: border-box;
   position: absolute;

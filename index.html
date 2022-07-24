@@ -27,7 +27,7 @@
             <div class="top_section">
               <div class="top_colum">
                 <div class="turntable-bg">
-                  <div class="pointer" onclick="showPopup()">
+                  <div class="pointer" onclick="handleRotate()">
                     <img src="./images/btn-arrow.png" alt="pointer" />
                   </div>
                   <div class="rotate">
@@ -91,7 +91,7 @@
               ✕
             </div>
             <p>Chúc mừng bạn đã trúng thưởng</p>
-            <h3 class="title-form-dk">Serum mụn 666K</h3>
+            <h3 class="title-form-dk" id="text-prize">Serum mụn 666K</h3>
             <form name="formLpdNoelTop_10" id="my-form">
               <div class="fullname">
                 <p class="title-in"></p>
@@ -130,11 +130,15 @@
       </div>
 
       <!-- popup-notice -->
-      <div class="popup-notice scale-in-center" style="display: block">
+      <div
+        class="popup-notice scale-in-center"
+        id="popup-notice"
+        style="display: none"
+      >
         <div class="notice-contain">
           <div class="man-close"></div>
           <div class="notice-detail">
-            <div class="done-submit">
+            <div class="done-submit" onclick="tooglePopNotice(false)">
               <div class="close-notice" id="closeNotice">
                 <i class="mc-close"></i>
               </div>
@@ -150,41 +154,5 @@
       </div>
     </section>
   </body>
-  <script>
-    function showPopup() {
-      document.getElementById('wrapper_popup').style.display = 'block';
-      const name = document.getElementById('name_vxmm_10').value;
-      console.log(name);
-    }
-    function hidePopup() {
-      document.getElementById('wrapper_popup').style.display = 'none';
-      window.location.reload();
-    }
-
-    window.onload = function () {
-      document.getElementById('my-form').onsubmit = function () {
-        const name = document.getElementById('name_vxmm_10').value;
-        const phone = document.getElementById('phone_vxmm_10').value;
-
-        if (!name) {
-          document.getElementById('nameVal6').style.display = 'block';
-        } else {
-          document.getElementById('nameVal6').style.display = 'none';
-        }
-        if (phone === '') {
-          document.getElementById('phoneVal6').style.display = 'block';
-        } else {
-          if (!/(84|0[3|5|7|8|9])+([0-9]{8})\b/g.test(phone)) {
-            document.getElementById('phoneVal6').innerHTML =
-              'Số điện thoại không đúng định dạng!';
-            document.getElementById('phoneVal6').style.display = 'block';
-          } else {
-            document.getElementById('phoneVal6').style.display = 'none';
-          }
-        }
-
-        return false;
-      };
-    };
-  </script>
+  <script src="./script.js"></script>
 </html>
