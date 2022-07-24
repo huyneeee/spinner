@@ -96,25 +96,36 @@ const tooglePopNotice = (status) => {
   }
   popNotice.style.display = "block";
 }
-
+const hidePopup = () => {
+  document.getElementById('wrapper_popup').style.display = 'none';
+  window.location.reload();
+}
 
 window.onload = function () {
   document.getElementById("my-form").onsubmit = function (e) {
     e.preventDefault();
-    const name = document.getElementById("name_vxmm_10").value;
-    const phone = document.getElementById("phone_vxmm_10").value;
+
+    const name = document.getElementById('name_vxmm_10').value;
+    const phone = document.getElementById('phone_vxmm_10').value;
 
     if (!name) {
-      document.getElementById("nameVal6").style.display = "block";
+      document.getElementById('nameVal6').style.display = 'block';
       return;
     } else {
-      document.getElementById("nameVal6").style.display = "none";
+      document.getElementById('nameVal6').style.display = 'none';
     }
-    if (phone === "") {
-      document.getElementById("phoneVal6").style.display = "block";
+    if (!phone) {
+      document.getElementById('phoneVal6').style.display = 'block';
       return;
     } else {
-      document.getElementById("phoneVal6").style.display = "none";
+      if (!/(84|0[3|5|7|8|9])+([0-9]{8})\b/g.test(phone)) {
+        document.getElementById('phoneVal6').innerHTML =
+          'Số điện thoại không đúng định dạng!';
+        document.getElementById('phoneVal6').style.display = 'block';
+        return;
+      } else {
+        document.getElementById('phoneVal6').style.display = 'none';
+      }
     }
     tooglePopForm(false);
     tooglePopNotice(true);
