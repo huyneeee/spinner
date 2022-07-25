@@ -78,19 +78,23 @@ const handleRotate = () => {
 };
 
 const tooglePopForm = (status, winningGif) => {
+  if (winningGif !== undefined) localStorage.setItem('winningGif', winningGif);
+
   if (!status) {
     popupShowForm.style.display = 'none';
     return;
   }
   setTimeout(() => {
     popupShowForm.style.display = 'block';
-    textPrize.innerHTML = winningGif;
+    textPrize.innerHTML = localStorage.getItem('winningGif');
   }, 1000);
 };
 
 const tooglePopNotice = (status) => {
   if (!status) {
+    popupShowForm.style.display = 'none';
     popNotice.style.display = 'none';
+    localStorage.removeItem('winningGif');
     return;
   }
   popNotice.style.display = 'block';
@@ -154,15 +158,13 @@ function validateForm() {
     });
     return response.json();
   }
-
   postData('https://60ebb1d0e9647b0017cdddbb.mockapi.io/animals', {
     name,
     phone,
   }).then((data) => {
-    tooglePopForm(false);
     if (data) {
-      document.getElementById('phoneVal6').style.display = 'none';
       tooglePopNotice(true);
+      document.getElementById('phoneVal6').style.display = 'none';
     }
   });
 }
