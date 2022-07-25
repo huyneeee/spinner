@@ -202,7 +202,8 @@ img {
     padding: 50px 15px !important;
   }
   .bg-vxmm .title-form-dk {
-    font-size: 25px;
+    font-size: 25px !important;
+    font-family: sans-serif !important;
   }
   .bg-vxmm .res_two {
     margin: auto !important;
@@ -462,7 +463,7 @@ h3 {
 }
 .mc-close::after,
 .mc-close::before {
-  content: "";
+  content: '';
   display: block;
   box-sizing: border-box;
   position: absolute;
